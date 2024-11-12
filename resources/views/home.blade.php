@@ -4,7 +4,7 @@
 @section('title', 'Inicio') <!-- Título de la página -->
 
 @section('content')
-    @include('components.carousel')
+
     @php
         $cards = [
             ['title' => 'Card 1', 'content' => 'Contenido de la tarjeta 1'],
@@ -13,6 +13,7 @@
             ['title' => 'Card 4', 'content' => 'Contenido de la tarjeta 4'],
         ];
     @endphp
+    @include('components.carousel')
 
     <div class="container pt-4">
         <!-- Grid de tarjetas -->

@@ -1,5 +1,5 @@
 <!-- resources/views/components/carousel.blade.php -->
-<div class="mx-auto  mx-auto">
+<div class="mx-auto">
     <div id="default-carousel" class="relative" data-carousel="static">
         <!-- Carousel wrapper -->
         <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">

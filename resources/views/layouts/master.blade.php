@@ -1,4 +1,3 @@
-<!-- resources/views/layouts/master.blade.php -->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -10,6 +9,7 @@
     <!-- Carga de estilos -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
     <style>
         html,
         body {
@@ -25,34 +25,28 @@
         .content-layout {
             display: flex;
             justify-content: space-between;
-            /* Establece un espacio entre los tres elementos */
             margin: 20px;
         }
 
         .main-content {
             flex: 1;
             padding: 0 20px;
-            /* Espacio entre el contenido principal y los anuncios */
         }
 
-        .ads-left, .ads-right {
-            width: 200px; /* Ajusta el tamaño de los anuncios */
+        .ads-left,
+        .ads-right {
+            width: 200px;
+            position: sticky;
+            top: 20px;
+        }
+
+        .ad-card {
             background-color: #f8f9fa;
             padding: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
             margin: 10px;
-            position: sticky;
-            top: 20px;
-        }
-
-        /* Asegura que el contenido principal y los anuncios tengan suficiente espacio */
-        .ads-left {
-            margin-right: 20px;
-        }
-
-        .ads-right {
-            margin-left: 20px;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -60,23 +54,40 @@
 <body>
     <!-- Header -->
     <header>
-        @include('partials.navbar') <!-- Incluye la barra de navegación -->
+        @include('partials.navbar')
     </header>
 
     <!-- Contenido principal -->
-    <main class="content-layout">
-        @include('partials.ads-left') <!-- Anuncio izquierdo -->
-
-        <div class="main-content">
-            @yield('content') <!-- Contenido principal -->
+    <main class="content-layout flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+        <!-- Anuncio izquierdo en pantallas grandes -->
+        <div class="hidden md:block">
+            @include('partials.ads-left')
         </div>
 
-        @include('partials.ads-right') <!-- Anuncio derecho -->
+        <!-- Tarjeta de anuncio superior en pantallas pequeñas -->
+        <div class="block md:hidden">
+            @include('partials.ads-left')
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="main-content flex-1">
+            @yield('content')
+        </div>
+
+        <!-- Anuncio derecho en pantallas grandes -->
+        <div class="hidden md:block">
+            @include('partials.ads-right')
+        </div>
+
+        <!-- Tarjeta de anuncio inferior en pantallas pequeñas -->
+        <div class="block md:hidden">
+            @include('partials.ads-right')
+        </div>
     </main>
 
     <!-- Footer -->
     <footer>
-        @include('partials.footer') <!-- Incluye el pie de página -->
+        @include('partials.footer')
     </footer>
 
     <!-- Scripts -->
